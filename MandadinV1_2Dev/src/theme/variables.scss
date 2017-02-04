@@ -1,0 +1,180 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+/* 1) Paleta de color predeterminada de ionic */
+// $ionicdefaultcolors: #387ef5, #32db64, #f53d3d, #f4f4f4, #222;
+/* 2) Paleta de color predeterminada de mandadin */
+// $mandadindefaultcolors: #00AFB8, #8BC53F, #CE283C, #FEC506, #F6941E;
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+/* 3) cambio los colores por los que necesito y agrego alguno */
+  // ionic default
+  // primary:    #FEC506, es el tono por default azul
+  // secondary:  #32db64, es el verde, auxiliar
+  // danger:     #f53d3d, es el rojo, auxiiar
+  // light:      #f4f4f4, se ve en los botones claros gris muy tenue
+  // dark:       #222, es negro solo negro
+
+/* 
+Organiza tus compras, rápido y facil sin olvidar nada. Mandadín te ayuda.
+
+No pierdas horas en tiendas o supermercados adivinando lo que hace falta por llevar a casa, Mandadín te ayuda a recordar y planear lo que necesitas.
+Mandadín creará una lista de productos, con solo añadirlos desde su catálogo.
+El catálogo se extiende a tus necesidades, puedes agregar más productos.
+En esta versión Mandadín cuenta con un visor de gastos para que sepas cuanto compraste.
+Apóyanos compartiendo esta aplicación para añadir muchas más funciones.
+
+Mandadín es la aplicación que todas las mamás habían estado esperando.
+
+*/
+$colors: (
+  primary:    #00AFB8,
+  secondary:  #8BC53F,
+  danger:     #CE283C,
+  light:      #FEC506,
+  dark:       #F6941E
+);
+
+/* Probando degradados 
+// posiblemente android de problemas, añadir esto: https://sujitaweb.wordpress.com/2016/05/27/gradient-background-in-ionic/
+ .content-md, .content-ios, .content-wp { background-image: -webkit-gradient( linear, 50% 0%, 50% 100%, color-stop(0%, color($colors, light) ), color-stop(100%, color($colors, dark) )) !important; }
+*/
+ .content-md, .content-ios, .content-wp{
+  background: -webkit-linear-gradient(180deg, color($colors, dark), color($colors, light));
+  background: linear-gradient(180deg, color($colors, dark), color($colors, light));
+ }
+
+/* 4) Ahora bien, aqui viene la sobreescritura para las variables globales 
+* Es importante saber al menos las palabras reservadas que sass usa como operadores:
+* https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+
+-Para oscurecer o aclarar el tono:
+darken( $base-color, 10% ) | lighten( $base-color, 10% )
+-Para saturar o desaturar de color:
+saturate( $base-color, 20% ) | desaturate( $base-color, 20% )
+-Para ajustar HUE (tono de espectro) | adjust-hue( $base-color, 20% )
+-Para controlar transparencia:
+rgba( $base-color, .7 )
+-Para controlar tinte
+tint( $base-color, 10% ) | shade( $base-color, 10% ) 
+
+4.1) Para personalizar las tipoggrafías, se deben aadir en assests y agregar una carpeta de fuentes.
+y hacer la importación como en una página web.
+*/
+
+// genero mi propia variable para la ruta de la fuente
+$custom-font-path: '../assets/fonts/' !default;
+
+@font-face {
+  font-family: "Gochi Hand";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Gochi Hand"), 
+        local("GochiHand-Regular"), 
+        url("#{$custom-font-path}/GochiHand-Regular.ttf") format("truetype"), 
+        url("#{$custom-font-path}/GochiHand-Regular.woff") format("woff");
+}
+
+h1{font-family: 'Gochi Hand', sans-serif;}
+$background-color: lighten( color($colors, dark), 40% );
+$toolbar-background:  color($colors, dark);
+$list-background-color: rgba( color($colors, dark), 0 );
+$list-border-color: color($colors, light);
+
+ion-footer ion-toolbar .toolbar-background{background-color:darken( color($colors, dark), 10% );}
+
+// para añadir animaciones:
+
+@keyframes blink {
+	0% { opacity:1; } 
+  50% { opacity:.2; }
+  100% { opacity:1; }
+}
+
+.blink {
+	animation-name: blink;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: alternate;
+}
+
+@keyframes pump {
+	0% { transform: scale(1); }
+	50% { transform: scale(.8); }
+	100% { transform: scale(1); }
+}
+
+.pump {
+	animation-name: pump;
+	animation-duration: 2s;
+	transform-origin:50% 50%;
+	animation-iteration-count: infinite;
+	animation-timing-function: alternate;
+}
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+$card-ios-background-color: lighten( color($colors, dark), 50% );
+$item-ios-divider-background: darken( color($colors, dark), 15% );
+$item-ios-divider-color: lighten( color($colors, dark), 30% );
+$item-ios-body-text-font-size: 1.8rem;
+$item-ios-font-size: 1.8rem;
+$list-ios-border-color: $list-border-color;
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+$card-md-background-color: lighten( color($colors, dark), 50% );
+$item-md-divider-background: darken( color($colors, dark), 15% );
+$item-md-divider-color: lighten( color($colors, dark), 30% );
+$item-md-body-text-font-size: 1.8rem;
+$item-md-font-size: 1.8rem;
+$list-md-border-color: $list-border-color;
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+$card-wp-background-color: lighten( color($colors, dark), 50% );
+$item-wp-divider-background: darken( color($colors, dark), 15% );
+$item-wp-divider-color: lighten( color($colors, dark), 30% );
+$item-wp-body-text-font-size: 1.8rem;
+$item-wp-font-size: 1.8rem;
+$list-wp-border-color: $list-border-color;
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.dark";
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+$ionicons-font-path: "../assets/fonts";
+@import "ionicons";
