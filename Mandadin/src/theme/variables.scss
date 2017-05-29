@@ -24,33 +24,106 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    #00AFB8,
+  secondary:  #8BC53F,
+  danger:     #CE283C,
+  light:      #FEC506,
+  dark:       #F6941E
 );
+
+/* Probando degradados 
+// posiblemente android de problemas, añadir esto: https://sujitaweb.wordpress.com/2016/05/27/gradient-background-in-ionic/
+ .content-md, .content-ios, .content-wp { background-image: -webkit-gradient( linear, 50% 0%, 50% 100%, color-stop(0%, color($colors, light) ), color-stop(100%, color($colors, dark) )) !important; }
+*/
+ .content-md, .content-ios, .content-wp{
+  background: -webkit-linear-gradient(180deg, color($colors, dark), color($colors, light));
+  background: linear-gradient(180deg, color($colors, dark), color($colors, light));
+ }
+
+ $custom-font-path: '../assets/fonts/' !default;
+
+@font-face {
+  font-family: "Gochi Hand";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Gochi Hand"), 
+        local("GochiHand-Regular"), 
+        url("#{$custom-font-path}/GochiHand-Regular.ttf") format("truetype"), 
+        url("#{$custom-font-path}/GochiHand-Regular.woff") format("woff");
+}
+
+h1{font-family: 'Gochi Hand', sans-serif;}
+$background-color: lighten( color($colors, dark), 40% );
+$toolbar-background:  color($colors, dark);
+$list-background-color: rgba( color($colors, dark), 0 );
+$list-border-color: color($colors, light);
+
+ion-footer ion-toolbar .toolbar-background{background-color:darken( color($colors, dark), 10% );}
+
+// para añadir animaciones:
+
+@keyframes blink {
+	0% { opacity:1; } 
+  50% { opacity:.2; }
+  100% { opacity:1; }
+}
+
+.blink {
+	animation-name: blink;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: alternate;
+}
+
+@keyframes pump {
+	0% { transform: scale(1); }
+	50% { transform: scale(.8); }
+	100% { transform: scale(1); }
+}
+
+.pump {
+	animation-name: pump;
+	animation-duration: 2s;
+	transform-origin:50% 50%;
+	animation-iteration-count: infinite;
+	animation-timing-function: alternate;
+}
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$card-ios-background-color: lighten( color($colors, dark), 50% );
+$item-ios-divider-background: darken( color($colors, dark), 15% );
+$item-ios-divider-color: lighten( color($colors, dark), 30% );
+$item-ios-body-text-font-size: 1.8rem;
+$item-ios-font-size: 1.8rem;
+$list-ios-border-color: $list-border-color;
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
+$card-md-background-color: lighten( color($colors, dark), 50% );
+$item-md-divider-background: darken( color($colors, dark), 15% );
+$item-md-divider-color: lighten( color($colors, dark), 30% );
+$item-md-body-text-font-size: 1.8rem;
+$item-md-font-size: 1.8rem;
+$list-md-border-color: $list-border-color;
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
+$card-wp-background-color: lighten( color($colors, dark), 50% );
+$item-wp-divider-background: darken( color($colors, dark), 15% );
+$item-wp-divider-color: lighten( color($colors, dark), 30% );
+$item-wp-body-text-font-size: 1.8rem;
+$item-wp-font-size: 1.8rem;
+$list-wp-border-color: $list-border-color;
 
 
 // App Theme
@@ -60,7 +133,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.dark";
 
 
 // Ionicons
